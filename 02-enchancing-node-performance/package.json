@@ -10,5 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "artillery": "^1.6.0-28"
   }
 }

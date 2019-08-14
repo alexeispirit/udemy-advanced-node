@@ -7,6 +7,20 @@ class BlogShow extends Component {
     this.props.fetchBlog(this.props.match.params._id);
   }
 
+  renderImage() {
+    if (this.props.blog.imageUrl) {
+      return (
+        <img
+          src={
+            'https://blogster-bucket-alex.s3.eu-central-1.amazonaws.com/' +
+            this.props.blog.imageUrl
+          }
+          alt="nblog"
+        />
+      );
+    }
+  }
+
   render() {
     if (!this.props.blog) {
       return '';
@@ -18,6 +32,7 @@ class BlogShow extends Component {
       <div>
         <h3>{title}</h3>
         <p>{content}</p>
+        {this.renderImage()}
       </div>
     );
   }
@@ -27,4 +42,7 @@ function mapStateToProps({ blogs }, ownProps) {
   return { blog: blogs[ownProps.match.params._id] };
 }
 
-export default connect(mapStateToProps, { fetchBlog })(BlogShow);
+export default connect(
+  mapStateToProps,
+  { fetchBlog }
+)(BlogShow);
